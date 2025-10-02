@@ -1,3 +1,6 @@
 # BMAD (local only)
 .bmad-core/
 .bmad-*/
+
+# MCP local configuration
+.mcp.json
