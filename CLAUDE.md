@@ -33,6 +33,7 @@ This project uses BMAD (Business-Method-Agent-Design) framework for AI agent orc
 Reference agents naturally in conversation: "As dev, implement..." or "Use architect to design..."
 
 **Available agent roles** (10 total):
+
 - `dev` - Full Stack Developer (code implementation, debugging)
 - `architect` - System design and technology decisions
 - `pm` - Product Manager (PRDs, strategy, roadmap)
@@ -65,10 +66,12 @@ npx bmad-method validate                 # Validate BMAD configuration
 **Hierarchy**: Discipline → Unit → Lesson (matches teacher mental model)
 
 **Dual Navigation**:
+
 - **Conceptual**: "What's in Unit 8.1 (Forces)?" - browse by discipline/unit
 - **Chronological**: "What am I teaching Day 25?" - pacing guide sequence
 
 **Lesson Page Template** (consistent structure across all lessons):
+
 - Standards and learning objectives
 - Student-friendly "We are learning to" statements
 - Teaching approach and methodology
@@ -96,6 +99,7 @@ npx bmad-method validate                 # Validate BMAD configuration
 ### Current Status
 
 Repository is in **initial planning phase**. Key planning artifacts in `docs/`:
+
 - `brief.md` - Comprehensive project brief (executive summary, problem statement, solution, metrics)
 - `brainstorming-session-results.md` - Initial discovery and requirements exploration
 - `lesson-8.1.1-breakdown.md` - Sample lesson structure analysis
@@ -103,6 +107,7 @@ Repository is in **initial planning phase**. Key planning artifacts in `docs/`:
 ### Google Drive Integration
 
 Repository has Google Drive MCP server configured for accessing OpenSciEd teaching materials:
+
 - Teaching edition documents not yet in Drive (as of 2025-09-30)
 - Student materials available: "8.1 Lesson 1 Student Procedure", "8.1 Contact Forces - Handouts"
 - See `claudedocs/google-drive-mcp-session.md` for integration details
@@ -127,6 +132,7 @@ Repository has Google Drive MCP server configured for accessing OpenSciEd teachi
 ### BMAD Agent Workflow
 
 When using BMAD agents:
+
 1. Agent activation reads their definition from AGENTS.md
 2. Agent immediately runs `*help` to show available commands
 3. Agent awaits user command/request

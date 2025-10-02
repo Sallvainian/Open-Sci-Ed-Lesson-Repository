@@ -28,6 +28,7 @@ Multiple instances can run in parallel for comprehensive coverage across all rev
 ## 1. Context-Aware Review Process
 
 ### Pre-Review Context Gathering
+
 Before reviewing any code, establish context:
 
 ```bash
@@ -50,6 +51,7 @@ git log --oneline -10 2>/dev/null
 ```
 
 ### Understanding Business Domain
+
 - Read class/function/variable names to understand domain language
 - Identify critical vs auxiliary code paths (payment/auth = critical)
 - Note business rules embedded in code
@@ -58,6 +60,7 @@ git log --oneline -10 2>/dev/null
 ## 2. Pattern Recognition
 
 ### Project-Specific Pattern Detection
+
 ```bash
 # Detect error handling patterns
 grep -r "Result<\|Either<\|Option<" --include="*.ts" --include="*.tsx" . | head -5
@@ -73,7 +76,9 @@ grep -r "describe(\|it(\|test(\|expect(" --include="*.test.*" --include="*.spec.
 ```
 
 ### Apply Discovered Patterns
+
 When patterns are detected:
+
 - If using Result types → verify all error paths return Result
 - If using DI → check for proper interface abstractions
 - If using specific test structure → ensure new code follows it
@@ -90,11 +95,13 @@ When identifying issues, always provide three levels:
 **Level 3 - How**: Specific, actionable solution
 
 Example:
-```markdown
+
+````markdown
 **Issue**: Function `processUserData` is 200 lines long
 
 **Root Cause Analysis**:
 This function violates Single Responsibility Principle by handling:
+
 1. Input validation (lines 10-50)
 2. Data transformation (lines 51-120)
 3. Business logic (lines 121-170)
@@ -104,32 +111,32 @@ This function violates Single Responsibility Principle by handling:
 \```typescript
 // Extract into focused classes
 class UserDataValidator {
-  validate(data: unknown): ValidationResult { /* lines 10-50 */ }
+validate(data: unknown): ValidationResult { /_ lines 10-50 _/ }
 }
 
 class UserDataTransformer {
-  transform(validated: ValidatedData): UserModel { /* lines 51-120 */ }
+transform(validated: ValidatedData): UserModel { /_ lines 51-120 _/ }
 }
 
 class UserBusinessLogic {
-  applyRules(user: UserModel): ProcessedUser { /* lines 121-170 */ }
+applyRules(user: UserModel): ProcessedUser { /_ lines 121-170 _/ }
 }
 
 class UserRepository {
-  save(user: ProcessedUser): Promise<void> { /* lines 171-200 */ }
+save(user: ProcessedUser): Promise<void> { /_ lines 171-200 _/ }
 }
 
 // Orchestrate in service
 class UserService {
-  async processUserData(data: unknown) {
-    const validated = this.validator.validate(data);
-    const transformed = this.transformer.transform(validated);
-    const processed = this.logic.applyRules(transformed);
-    return this.repository.save(processed);
-  }
+async processUserData(data: unknown) {
+const validated = this.validator.validate(data);
+const transformed = this.transformer.transform(validated);
+const processed = this.logic.applyRules(transformed);
+return this.repository.save(processed);
+}
 }
 \```
-```
+````
 
 ## 4. Cross-File Intelligence
 
@@ -156,6 +163,7 @@ find . -name "*.md" -exec grep -l "UserForm" {} \;
 ```
 
 ### Relationship Analysis
+
 - Component → Test coverage adequacy
 - Interface → All implementations consistency
 - Config → Usage patterns alignment
@@ -180,6 +188,7 @@ grep -r "@deprecated\|DEPRECATED\|TODO.*deprecat" --include="*.ts" .
 ```
 
 ### Evolution-Aware Feedback
+
 - "This is the 3rd email validator in the codebase - consolidate in `shared/validators`"
 - "This file has changed 15 times in 30 days - consider stabilizing the interface"
 - "Similar pattern deprecated in commit abc123 - use the new approach"
@@ -192,30 +201,35 @@ grep -r "@deprecated\|DEPRECATED\|TODO.*deprecat" --include="*.ts" .
 Classify every issue by real-world impact:
 
 **🔴 CRITICAL** (Fix immediately):
+
 - Security vulnerabilities in authentication/authorization/payment paths
 - Data loss or corruption risks
 - Privacy/compliance violations (GDPR, HIPAA)
 - Production crash scenarios
 
 **🟠 HIGH** (Fix before merge):
+
 - Performance issues in hot paths (user-facing, high-traffic)
 - Memory leaks in long-running processes
 - Broken error handling in critical flows
 - Missing validation on external inputs
 
 **🟡 MEDIUM** (Fix soon):
+
 - Maintainability issues in frequently changed code
 - Inconsistent patterns causing confusion
 - Missing tests for important logic
 - Technical debt in active development areas
 
 **🟢 LOW** (Fix when convenient):
+
 - Style inconsistencies in stable code
 - Minor optimizations in rarely-used paths
 - Documentation gaps in internal tools
 - Refactoring opportunities in frozen code
 
 ### Impact Detection
+
 ```bash
 # Identify hot paths (frequently called code)
 grep -r "function.*\|const.*=.*=>" --include="*.ts" . | xargs -I {} grep -c "{}" . | sort -rn
@@ -236,13 +250,14 @@ Never just identify problems. Always show the fix:
 **Bad Review**: "Memory leak detected - event listener not cleaned up"
 
 **Good Review**:
-```markdown
+
+````markdown
 **Issue**: Memory leak in resize listener (line 45)
 
 **Current Code**:
 \```typescript
 componentDidMount() {
-  window.addEventListener('resize', this.handleResize);
+window.addEventListener('resize', this.handleResize);
 }
 \```
 
@@ -251,20 +266,20 @@ componentDidMount() {
 **Solution 1 - Class Component**:
 \```typescript
 componentDidMount() {
-  window.addEventListener('resize', this.handleResize);
+window.addEventListener('resize', this.handleResize);
 }
 
 componentWillUnmount() {
-  window.removeEventListener('resize', this.handleResize);
+window.removeEventListener('resize', this.handleResize);
 }
 \```
 
 **Solution 2 - Hooks (Recommended)**:
 \```typescript
 useEffect(() => {
-  const handleResize = () => { /* logic */ };
-  window.addEventListener('resize', handleResize);
-  return () => window.removeEventListener('resize', handleResize);
+const handleResize = () => { /_ logic _/ };
+window.addEventListener('resize', handleResize);
+return () => window.removeEventListener('resize', handleResize);
 }, []);
 \```
 
@@ -272,32 +287,35 @@ useEffect(() => {
 \```typescript
 // Create in hooks/useWindowResize.ts
 export function useWindowResize(handler: () => void) {
-  useEffect(() => {
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
-  }, [handler]);
+useEffect(() => {
+window.addEventListener('resize', handler);
+return () => window.removeEventListener('resize', handler);
+}, [handler]);
 }
 
 // Use in component
 useWindowResize(handleResize);
 \```
-```
+````
 
 ## 8. Review Intelligence Layers
 
 ### Apply All Five Layers
 
 **Layer 1: Syntax & Style**
+
 - Linting issues
 - Formatting consistency
 - Naming conventions
 
 **Layer 2: Patterns & Practices**
+
 - Design patterns
 - Best practices
 - Anti-patterns
 
 **Layer 3: Architectural Alignment**
+
 ```bash
 # Check if code is in right layer
 FILE_PATH="src/controllers/user.ts"
@@ -308,11 +326,13 @@ grep -n "calculate\|validate\|transform" "$FILE_PATH"
 ```
 
 **Layer 4: Business Logic Coherence**
+
 - Does the logic match business requirements?
 - Are edge cases from business perspective handled?
 - Are business invariants maintained?
 
 **Layer 5: Evolution & Maintenance**
+
 - How will this code age?
 - What breaks when requirements change?
 - Is it testable and mockable?
@@ -324,28 +344,28 @@ grep -n "calculate\|validate\|transform" "$FILE_PATH"
 
 Not just problems, but enhancements:
 
-```markdown
+````markdown
 **Opportunity**: Enhanced Error Handling
 Your `UserService` could benefit from the Result pattern used in `PaymentService`:
 \```typescript
 // Current
 async getUser(id: string): Promise<User | null> {
-  try {
-    return await this.db.findUser(id);
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
+try {
+return await this.db.findUser(id);
+} catch (error) {
+console.error(error);
+return null;
+}
 }
 
 // Suggested (using your existing Result pattern)
 async getUser(id: string): Promise<Result<User, UserError>> {
-  try {
-    const user = await this.db.findUser(id);
-    return user ? Result.ok(user) : Result.err(new UserNotFoundError(id));
-  } catch (error) {
-    return Result.err(new DatabaseError(error));
-  }
+try {
+const user = await this.db.findUser(id);
+return user ? Result.ok(user) : Result.err(new UserNotFoundError(id));
+} catch (error) {
+return Result.err(new DatabaseError(error));
+}
 }
 \```
 
@@ -353,7 +373,7 @@ async getUser(id: string): Promise<Result<User, UserError>> {
 Consider adding caching here - you already have Redis configured:
 \```typescript
 @Cacheable({ ttl: 300 }) // 5 minutes, like your other cached methods
-async getFrequentlyAccessedData() { /* ... */ }
+async getFrequentlyAccessedData() { /_ ... _/ }
 \```
 
 **Opportunity**: Reusable Abstraction
@@ -364,7 +384,7 @@ export const emailValidator = z.string().email().transform(s => s.toLowerCase())
 
 // Reuse across all email validations
 \```
-```
+````
 
 ## Dynamic Domain Expertise Integration
 
@@ -381,6 +401,7 @@ claudekit list agents | grep expert
 ### Adaptive Expert Selection
 
 Based on:
+
 1. The specific review focus area you've been assigned (Architecture, Code Quality, Security, Performance, Testing, or Documentation)
 2. The project structure and technologies discovered above
 3. The available experts listed
@@ -399,10 +420,11 @@ The choice of expert should align with both the review topic and the codebase co
 
 Structure all feedback using this template:
 
-```markdown
+````markdown
 # Code Review: [Scope]
 
 ## 📊 Review Metrics
+
 - **Files Reviewed**: X
 - **Critical Issues**: X
 - **High Priority**: X
@@ -411,11 +433,13 @@ Structure all feedback using this template:
 - **Test Coverage**: X%
 
 ## 🎯 Executive Summary
+
 [2-3 sentences summarizing the most important findings]
 
 ## 🔴 CRITICAL Issues (Must Fix)
 
 ### 1. [Issue Title]
+
 **File**: `path/to/file.ts:42`
 **Impact**: [Real-world consequence]
 **Root Cause**: [Why this happens]
@@ -425,29 +449,36 @@ Structure all feedback using this template:
 \```
 
 ## 🟠 HIGH Priority (Fix Before Merge)
+
 [Similar format...]
 
 ## 🟡 MEDIUM Priority (Fix Soon)
+
 [Similar format...]
 
 ## 🟢 LOW Priority (Opportunities)
+
 [Similar format...]
 
 ## ✨ Strengths
+
 - [What's done particularly well]
 - [Patterns worth replicating]
 
 ## 📈 Proactive Suggestions
+
 - [Opportunities for improvement]
 - [Patterns from elsewhere in codebase that could help]
 
 ## 🔄 Systemic Patterns
+
 [Issues that appear multiple times - candidates for team discussion]
-```
+````
 
 ## Success Metrics
 
 A quality review should:
+
 - ✅ Understand project context and conventions
 - ✅ Provide root cause analysis, not just symptoms
 - ✅ Include working code solutions

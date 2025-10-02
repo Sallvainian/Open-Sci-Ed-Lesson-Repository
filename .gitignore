@@ -32,8 +32,12 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Local env files
+.env
 .env*.local
 .env.local
+
+# Serena MCP memory
+.serena/
 
 # Vercel
 .vercel

@@ -2,7 +2,7 @@
 description: Implement a validated specification by orchestrating concurrent agents
 category: validation
 allowed-tools: Task, Read, TodoWrite, Grep, Glob, Bash(claudekit:status stm), Bash(stm:*), Bash(jq:*)
-argument-hint: "<path-to-spec-file>"
+argument-hint: '<path-to-spec-file>'
 ---
 
 # Implement Specification
@@ -28,6 +28,7 @@ Implement the specification at: $ARGUMENTS
 ### 1. Analyze Specification
 
 Read the specification to understand:
+
 - What components need to be built
 - Dependencies between components
 - Testing requirements
@@ -36,6 +37,7 @@ Read the specification to understand:
 ### 2. Load or Create Tasks
 
 **Using STM** (if available):
+
 ```bash
 stm list --status pending -f json
 ```
@@ -56,12 +58,12 @@ Launch appropriate specialist agent:
 
 ```
 Task tool:
-- description: "Implement [component name]"  
+- description: "Implement [component name]"
 - subagent_type: [choose specialist that matches the task]
 - prompt: |
     First run: stm show [task-id]
     This will give you the full task details and requirements.
-    
+
     Then implement the component based on those requirements.
     Follow project code style and add error handling.
     Report back when complete.
@@ -77,7 +79,7 @@ Task tool:
 - subagent_type: testing-expert [or jest/vitest-testing-expert]
 - prompt: |
     First run: stm show [task-id]
-    
+
     Write comprehensive tests for the implemented component.
     Cover edge cases and aim for >80% coverage.
     Report back when complete.
@@ -97,11 +99,11 @@ Task tool:
 - subagent_type: code-review-expert
 - prompt: |
     First run: stm show [task-id]
-    
+
     Review implementation for BOTH:
     1. COMPLETENESS - Are all requirements from the task fully implemented?
     2. QUALITY - Code quality, security, error handling, test coverage
-    
+
     Categorize any issues as: CRITICAL, IMPORTANT, or MINOR.
     Report if implementation is COMPLETE or INCOMPLETE.
     Report back with findings.
@@ -112,17 +114,18 @@ Task tool:
 If code review found the implementation INCOMPLETE or has CRITICAL issues:
 
 1. Launch specialist to complete/fix:
+
    ```
    Task tool:
    - description: "Complete/fix [component]"
    - subagent_type: [specialist matching the task]
    - prompt: |
        First run: stm show [task-id]
-       
+
        Address these items from code review:
        - Missing requirements: [list any incomplete items]
        - Critical issues: [list any critical issues]
-       
+
        Update tests if needed.
        Report back when complete.
    ```
@@ -138,6 +141,7 @@ If code review found the implementation INCOMPLETE or has CRITICAL issues:
 #### Step 5: Commit Changes
 
 Create atomic commit following project conventions:
+
 ```bash
 git add [files]
 git commit -m "[follow project's commit convention]"
@@ -148,6 +152,7 @@ git commit -m "[follow project's commit convention]"
 Monitor implementation progress:
 
 **Using STM:**
+
 ```bash
 stm list --pretty              # View all tasks
 stm list --status pending      # Pending tasks
@@ -161,6 +166,7 @@ Track tasks in the session with status indicators.
 ### 5. Complete Implementation
 
 Implementation is complete when:
+
 - All tasks are COMPLETE (all requirements implemented)
 - All tasks pass quality review (no critical issues)
 - All tests passing
@@ -169,6 +175,7 @@ Implementation is complete when:
 ## If Issues Arise
 
 If any agent encounters problems:
+
 1. Identify the specific issue
 2. Launch appropriate specialist to resolve
 3. Or request user assistance if blocked

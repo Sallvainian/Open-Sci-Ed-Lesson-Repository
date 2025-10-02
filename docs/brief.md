@@ -30,12 +30,14 @@ Science teachers, particularly those newer to the profession, face significant c
 ### Impact of the Problem
 
 **Quantifiable Impact:**
+
 - Planning time significantly longer than necessary
 - Increased cognitive load during preparation period
 - Higher stress and uncertainty before teaching
 - Reduced teaching confidence due to preparation gaps
 
 **Qualitative Impact:**
+
 - "Good teaching requires good planning" - the current state undermines the foundation of effective instruction
 - Teachers face "surprises" in content because they don't have complete, organized preparation materials readily available
 - Professional growth hampered by inefficient workflows rather than lack of content knowledge
@@ -90,6 +92,7 @@ The Open Science Education Lesson Repository is a **web-based content organizati
 ### High-Level Product Vision
 
 A science teacher opens the repository, navigates to the current lesson (e.g., "Forces - Unit 8.1"), and sees a consistently structured page with:
+
 - Standards and learning objectives
 - Student-friendly "We are learning to" statements
 - Teaching approach and methodology
@@ -105,18 +108,21 @@ The teacher can switch between conceptual navigation ("What's in Unit 8?") and c
 ### Primary User Segment: Early-Career Science Teachers
 
 **Demographic Profile:**
+
 - Science teachers in years 1-5 of teaching
 - Middle or high school level
 - Using OpenSciEd curriculum (or similar standards-based science programs)
 - Comfortable with technology and web-based tools
 
 **Current Behaviors and Workflows:**
+
 - Spend significant time searching through OpenSciEd materials on multiple platforms
 - Struggle to maintain consistent planning routines
 - Follow district pacing guides but frequently fall behind schedule
 - Collect resources in ad-hoc ways (bookmarks, Google Drive folders, physical files)
 
 **Specific Needs and Pain Points:**
+
 - Need structure and consistency in planning workflow
 - Lack the "mental maps" veteran teachers have developed
 - Want confidence entering classroom fully prepared
@@ -124,6 +130,7 @@ The teacher can switch between conceptual navigation ("What's in Unit 8?") and c
 - Desire to match planning efficiency of experienced colleagues
 
 **Goals They're Trying to Achieve:**
+
 - Deliver high-quality, well-prepared science instruction consistently
 - Build efficient, sustainable planning workflows
 - Reduce stress and cognitive load during preparation
@@ -162,24 +169,24 @@ The teacher can switch between conceptual navigation ("What's in Unit 8?") and c
 ### Core Features (Must Have)
 
 - **Hierarchical Content Organization:** Three-level structure (Discipline → Unit → Lesson) with clear navigation between levels
-  - *Rationale:* Foundation of entire organization system; all other features depend on this structure
+  - _Rationale:_ Foundation of entire organization system; all other features depend on this structure
 
 - **Lesson Page Template:** Consistent, structured page format for every lesson including: lesson name/title, educational standards, student objectives, student-friendly learning targets ("We are learning to"), teaching approach/methodology, resources section
-  - *Rationale:* Provides predictable structure and ensures completeness of lesson planning materials
+  - _Rationale:_ Provides predictable structure and ensures completeness of lesson planning materials
 
 - **Dual Navigation Modes:**
   - Conceptual navigation: Browse by Discipline → Unit → Lesson
   - Chronological navigation: View lessons in teaching sequence (pacing guide order)
-  - *Rationale:* Supports both mental models teachers use; critical for accommodating off-pace teaching reality
+  - _Rationale:_ Supports both mental models teachers use; critical for accommodating off-pace teaching reality
 
 - **File Hosting and Viewing:** Upload and host PDF files, slide decks, and documents within application with embedded viewers
-  - *Rationale:* Eliminates dependency on external platforms (Google Drive) for speed and reliability
+  - _Rationale:_ Eliminates dependency on external platforms (Google Drive) for speed and reliability
 
 - **Content Search:** Basic search functionality across lesson names, standards, and objectives
-  - *Rationale:* Provides quick access when exact location unknown; complements navigation structure
+  - _Rationale:_ Provides quick access when exact location unknown; complements navigation structure
 
 - **"Add New Lesson" Functionality:** Simple interface to create new lesson page with auto-populated template structure
-  - *Rationale:* Enables ongoing content addition and maintenance without technical complexity
+  - _Rationale:_ Enables ongoing content addition and maintenance without technical complexity
 
 ### Out of Scope for MVP
 
@@ -211,16 +218,19 @@ MVP is successful when:
 ### Phase 2 Features
 
 **Google Drive Import Workflow:**
+
 - Bulk import functionality to bring existing materials from Google Drive into application
 - Automated metadata extraction (when possible) to reduce manual data entry
 - Import preview and validation before final upload
 
 **Enhanced Search and Filtering:**
+
 - Advanced search across all lesson content and resources
 - Filter lessons by standard, topic tags, or resource type
 - Quick filters for "upcoming lessons" or "lessons needing review"
 
 **Resource Management:**
+
 - Ability to link same resource across multiple lessons
 - Resource library view showing all uploaded materials
 - Batch upload and organization tools
@@ -228,17 +238,20 @@ MVP is successful when:
 ### Long-term Vision (1-2 Years)
 
 **Multi-Curriculum Support:**
+
 - Expand beyond OpenSciEd to support other science curriculum frameworks
 - Flexible content model accommodating different organizational structures
 - Template customization for different teaching contexts
 
 **Team Collaboration:**
+
 - Multi-user access for department-level planning
 - Shared resource libraries
 - Commenting and annotation features
 - Version control for lesson page updates
 
 **Intelligent Features:**
+
 - AI-assisted content organization suggestions
 - Automated resource recommendations based on lesson topics
 - Pattern recognition for identifying gaps in lesson coverage
@@ -367,6 +380,7 @@ MVP is successful when:
 ### A. Research Summary
 
 **Brainstorming Session (2025-09-29):**
+
 - **Duration:** 50 minutes
 - **Techniques Used:** First Principles Thinking, Exploratory Questioning, What If Scenarios, Convergent Analysis
 - **Key Insights:**
@@ -377,6 +391,7 @@ MVP is successful when:
   - Success metric clarity: "Can I find everything I need in <30 seconds?"
 
 **User Context:**
+
 - Early-career science teacher using OpenSciEd curriculum
 - Three main disciplines: Physical Science, Life Science, Earth and Space Science
 - Follows district pacing guide but rarely perfectly on schedule (common for teachers)
@@ -406,6 +421,7 @@ MVP is successful when:
 This Project Brief provides the full context for the **Open Science Education Lesson Repository**. Please start in 'PRD Generation Mode', review the brief thoroughly to work with the user to create the PRD section by section as the template indicates, asking for any necessary clarification or suggesting improvements.
 
 **Key areas for PM to expand in PRD:**
+
 - Detailed user stories for each core feature
 - Specific lesson page template field definitions (requires material review)
 - Technical architecture specification after tech stack decision
