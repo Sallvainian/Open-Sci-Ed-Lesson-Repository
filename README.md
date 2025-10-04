@@ -1,5 +1,7 @@
 # Open Science Ed Lesson Repository
 
+[![CI](https://github.com/sallvain/Open-Sci-Ed-Lesson-Repository/actions/workflows/ci.yml/badge.svg)](https://github.com/sallvain/Open-Sci-Ed-Lesson-Repository/actions/workflows/ci.yml)
+
 A web-based lesson planning and resource management tool for organizing OpenSciEd science curriculum materials.
 
 ## Overview
@@ -255,6 +257,97 @@ For detailed architecture documentation, see [`docs/architecture/`](docs/archite
 4. Create a pull request for review
 
 Pre-commit hooks automatically run linting and formatting checks.
+
+## CI/CD Pipeline
+
+### Continuous Integration (CI)
+
+Every push to `main` and all pull requests automatically trigger the CI pipeline via GitHub Actions:
+
+**Quality Checks Run:**
+
+- **ESLint**: Code quality and best practices
+- **Prettier**: Code formatting consistency
+- **TypeScript**: Type safety validation
+- **Vitest**: Unit and component tests
+
+**Pipeline Behavior:**
+
+- ✅ All checks must pass before merging pull requests
+- ❌ Failed checks block merge and prevent deployment
+- ⏱️ Expected runtime: <3 minutes (with dependency caching)
+
+**View CI Status:**
+
+- GitHub Actions tab in repository
+- PR status checks (at bottom of PR page)
+- Commit status badges (green checkmark = pass, red X = fail)
+
+### Continuous Deployment (CD)
+
+Deployment is handled automatically via **Vercel GitHub Integration**:
+
+**Automatic Deployments:**
+
+- **Production**: Triggered on every push to `main` branch (after CI passes)
+- **Preview**: Created for every pull request
+- **Rollback**: Can be performed instantly via Vercel dashboard
+
+**Deployment Flow:**
+
+1. Developer merges PR to `main` (after CI passes)
+2. Vercel detects push to `main`
+3. Vercel builds Next.js application (frontend + API routes)
+4. Vercel deploys to production edge network (~2-5 minutes)
+5. Deployment status updates on GitHub commit (green checkmark)
+
+**Production Environment:**
+
+- **URL**: Available via Vercel dashboard after first deployment
+- **Environment Variables**: Configured in Vercel dashboard (Settings → Environment Variables)
+- **Deployment Logs**: Vercel dashboard → Deployments → View logs
+
+### Manual Rollback Procedure
+
+If a deployment causes issues in production:
+
+1. Go to [Vercel Dashboard](https://vercel.com)
+2. Navigate to project → **Deployments** tab
+3. Find previous stable deployment
+4. Click three-dot menu → **"Promote to Production"**
+5. Confirm promotion
+6. Previous version is now live (instant rollback)
+
+**Important**: Rollback only affects deployed code, not database migrations. If database changes were made, additional steps may be required.
+
+### Environment Variables
+
+Production environment variables are configured in Vercel dashboard, not in repository:
+
+**Required Variables:**
+
+- `DATABASE_URL` - PostgreSQL connection string (Supabase)
+- `JWT_SECRET` - Secret key for JWT token generation (32+ characters)
+- `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anon key
+- `SUPABASE_SERVICE_KEY` - Supabase service key (server-side only)
+- `NEXT_PUBLIC_APP_URL` - Production application URL
+- `NODE_ENV` - Set to `production`
+
+**Configuration Steps:**
+
+1. Vercel Dashboard → Project Settings
+2. Navigate to **Environment Variables** tab
+3. Add each variable with production values
+4. Scope: **Production** (for production deployments)
+5. Save changes
+6. Redeploy to apply new variables
+
+**Security Notes:**
+
+- Never commit environment variables to repository (`.env.local` is gitignored)
+- Production secrets must be different from development secrets
+- Vercel automatically masks variables in build logs
 
 ## Database Setup
 

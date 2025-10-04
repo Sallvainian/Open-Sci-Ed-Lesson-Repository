@@ -158,9 +158,11 @@ describe('LoginPage Component', () => {
     });
 
     // Resolve promise to clean up
-    resolvePromise!({
-      ok: true,
-      json: () => Promise.resolve({ data: { token: 'token', user: {} } }),
-    });
+    resolvePromise!(
+      new Response(JSON.stringify({ data: { token: 'token', user: {} } }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    );
   });
 });

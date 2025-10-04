@@ -47,7 +47,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     return response;
   } catch (error) {
-    const apiError = handleApiError(error);
-    return NextResponse.json(apiError, { status: apiError.statusCode });
+    return handleApiError(error);
   }
 }
