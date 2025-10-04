@@ -1,0 +1,79 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Discipline {
+  id           String   @id @default(uuid())
+  name         String   @unique
+  description  String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  units        Unit[]
+
+  @@map("disciplines")
+}
+
+model Unit {
+  id               String   @id @default(uuid())
+  disciplineId     String   @map("discipline_id")
+  name             String
+  description      String?
+  displayOrder     Int      @default(0)
+  estimatedLessons Int      @default(0) @map("estimated_lessons")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  discipline       Discipline @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+  lessons          Lesson[]
+
+  @@map("units")
+  @@index([disciplineId])
+}
+
+model Lesson {
+  id               String       @id @default(uuid())
+  unitId           String       @map("unit_id")
+  name             String
+  lessonNumber     Int          @map("lesson_number")
+  displayOrder     Int          @default(0) @map("display_order")
+
+  // Pacing Guide
+  scheduledDate    DateTime?    @map("scheduled_date")
+  completedDate    DateTime?    @map("completed_date")
+  status           LessonStatus @default(upcoming)
+
+  // Content
+  standards        String[]
+  objectives       String[]
+  studentTargets   String[]     @map("student_targets")
+  teachingApproach String       @map("teaching_approach") @db.Text
+  teacherNotes     String?      @map("teacher_notes") @db.Text
+
+  // Metadata
+  estimatedDuration Int?        @map("estimated_duration")
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  unit             Unit         @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  @@map("lessons")
+  @@index([unitId])
+  @@index([scheduledDate])
+  @@index([status])
+}
+
+enum LessonStatus {
+  upcoming
+  in_progress
+  completed
+  needs_review
+}

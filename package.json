@@ -10,6 +10,7 @@
     "format": "prettier --write .",
     "test": "vitest",
     "test:e2e": "playwright test",
+    "db:setup": "pnpm db:push && pnpm db:seed",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
@@ -38,6 +39,7 @@
   "devDependencies": {
     "@playwright/test": "^1.55.1",
     "@tanstack/react-query-devtools": "^5.90.2",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.3.1",
     "@types/node": "^20.19.19",
     "@types/react": "^18.3.25",
