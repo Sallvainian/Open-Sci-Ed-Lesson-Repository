@@ -87,4 +87,5 @@ function getAllowedOrigin(request: NextRequest): string {
 
 export const config = {
   matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  runtime: 'nodejs', // jsonwebtoken requires Node.js runtime, not Edge
 };
