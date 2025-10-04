@@ -75,14 +75,19 @@ export function middleware(request: NextRequest): NextResponse {
 
 function getAllowedOrigin(request: NextRequest): string {
   const origin = request.headers.get('origin');
-  const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://open-sci-ed-lesson-repository-gxj8vvh11-sallvainians-projects.vercel.app',
+  ];
 
-  if (origin && allowedOrigins.includes(origin)) {
+  // Allow any vercel.app domain in production
+  if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app'))) {
     return origin;
   }
 
-  // Default to first allowed origin for development
-  return allowedOrigins[0];
+  // For same-origin requests, use the request URL origin
+  return new URL(request.url).origin;
 }
 
 export const config = {
