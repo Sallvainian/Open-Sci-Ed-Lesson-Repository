@@ -1,7 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import RootLayout from './layout';
+
+// Mock Next.js router for Header component
+vi.mock('next/navigation', (): { useRouter: () => { push: () => void } } => ({
+  useRouter: () => ({
+    push: vi.fn(),
+  }),
+}));
 
 describe('RootLayout', () => {
   it('should render children content', () => {

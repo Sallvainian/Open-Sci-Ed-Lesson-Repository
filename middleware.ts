@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyToken } from '@/lib/auth/jwt';
 
 export function middleware(request: NextRequest): NextResponse {
   const startTime = Date.now();
+  const { pathname } = request.nextUrl;
+
+  // Public routes that don't require authentication
+  const publicPaths = ['/login', '/api/auth/login', '/api/auth/logout', '/api/health'];
+
+  // Allow access to public paths
+  const isPublicPath = publicPaths.some((path) => pathname.startsWith(path));
 
   // Handle preflight requests
   if (request.method === 'OPTIONS') {
@@ -14,6 +22,36 @@ export function middleware(request: NextRequest): NextResponse {
         'Access-Control-Max-Age': '86400',
       },
     });
+  }
+
+  // Authentication check for protected routes
+  if (!isPublicPath) {
+    // Check for authentication token in cookies
+    const token = request.cookies.get('auth-token')?.value;
+
+    if (!token) {
+      // API routes return 401, pages redirect to login
+      if (pathname.startsWith('/api')) {
+        return NextResponse.json(
+          { error: 'UNAUTHORIZED', message: 'Authentication required' },
+          { status: 401 }
+        );
+      }
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    // Verify token validity
+    const payload = verifyToken(token);
+    if (!payload) {
+      // API routes return 401, pages redirect to login
+      if (pathname.startsWith('/api')) {
+        return NextResponse.json(
+          { error: 'UNAUTHORIZED', message: 'Invalid or expired token' },
+          { status: 401 }
+        );
+      }
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
   }
 
   // Continue with the request
@@ -48,5 +86,5 @@ function getAllowedOrigin(request: NextRequest): string {
 }
 
 export const config = {
-  matcher: '/api/:path*',
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };
