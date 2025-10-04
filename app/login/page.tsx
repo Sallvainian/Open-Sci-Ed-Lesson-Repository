@@ -32,7 +32,7 @@ export default function LoginPage(): JSX.Element {
 
   // Redirect if already authenticated
   useEffect(() => {
-    const checkAuth = () => {
+    const checkAuth = (): void => {
       const cookies = document.cookie.split(';');
       const authToken = cookies.find((c) => c.trim().startsWith('auth-token='));
       if (authToken) {
