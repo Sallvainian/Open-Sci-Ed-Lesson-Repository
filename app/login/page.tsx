@@ -17,7 +17,7 @@ import {
   Container,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'Username is required'),
@@ -29,6 +29,18 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginPage(): JSX.Element {
   const router = useRouter();
   const [error, setError] = useState<string>('');
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    const checkAuth = () => {
+      const cookies = document.cookie.split(';');
+      const authToken = cookies.find((c) => c.trim().startsWith('auth-token='));
+      if (authToken) {
+        router.push('/');
+      }
+    };
+    checkAuth();
+  }, [router]);
 
   const {
     register,

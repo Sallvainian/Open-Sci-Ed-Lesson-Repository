@@ -1,11 +1,11 @@
 # Quality Gate Decision - Story 1.4
 schema: 1
-story: "1.4"
-story_title: "Frontend Application Foundation"
+story: '1.4'
+story_title: 'Frontend Application Foundation'
 gate: PASS
-status_reason: "Excellent implementation with all ACs met, 100% test coverage, zero issues found; TECH-002 provider nesting handled correctly"
-reviewer: "Quinn (Test Architect)"
-updated: "2025-10-03T23:05:00Z"
+status_reason: 'Excellent implementation with all ACs met, 100% test coverage, zero issues found; TECH-002 provider nesting handled correctly'
+reviewer: 'Quinn (Test Architect)'
+updated: '2025-10-03T23:05:00Z'
 
 waiver: { active: false }
 
@@ -30,19 +30,19 @@ evidence:
 nfr_validation:
   security:
     status: PASS
-    notes: "Environment variables properly configured, no hardcoded secrets, CORS handled in middleware"
+    notes: 'Environment variables properly configured, no hardcoded secrets, CORS handled in middleware'
   performance:
     status: PASS
-    notes: "Framework choices optimized (Next.js, TanStack Query), QueryClient properly initialized with useState pattern"
+    notes: 'Framework choices optimized (Next.js, TanStack Query), QueryClient properly initialized with useState pattern'
   reliability:
     status: PASS
-    notes: "API client error handling covers network errors, 4xx, 5xx; TanStack Query provides automatic retries"
+    notes: 'API client error handling covers network errors, 4xx, 5xx; TanStack Query provides automatic retries'
   maintainability:
     status: PASS
-    notes: "TypeScript strict mode, 100% test coverage achieved, comprehensive documentation, colocated tests, proper code organization"
+    notes: 'TypeScript strict mode, 100% test coverage achieved, comprehensive documentation, colocated tests, proper code organization'
 
 recommendations:
   immediate: []
   future:
-    - "Add performance budgets to docs/architecture/technology-stack.md before Story 1.5"
-    - "Consider visual regression tests for styling validation in future UI-heavy stories"
+    - 'Add performance budgets to docs/architecture/technology-stack.md before Story 1.5'
+    - 'Consider visual regression tests for styling validation in future UI-heavy stories'
