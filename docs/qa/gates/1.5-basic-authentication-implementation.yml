@@ -1,36 +1,36 @@
 # Quality Gate: Story 1.5 - Basic Authentication Implementation
 schema: 1
-story: "1.5"
-story_title: "Basic Authentication Implementation"
+story: '1.5'
+story_title: 'Basic Authentication Implementation'
 gate: PASS
-status_reason: "All 68 tests passing after database schema synchronization (pnpm db:push). All acceptance criteria met, all critical security risks mitigated. Story approved for production."
-reviewer: "Quinn (Test Architect)"
-updated: "2025-10-04T01:50:00Z"
+status_reason: 'All 68 tests passing after database schema synchronization (pnpm db:push). All acceptance criteria met, all critical security risks mitigated. Story approved for production.'
+reviewer: 'Quinn (Test Architect)'
+updated: '2025-10-04T01:50:00Z'
 
 # Non-blocking issues for future improvement
 top_issues:
-  - id: "TEST-002"
+  - id: 'TEST-002'
     severity: medium
-    finding: "Test suite times out after 2 minutes in watch mode"
-    suggested_action: "Investigate test performance, optimize slow tests or adjust timeout configuration"
-  - id: "TECH-003"
+    finding: 'Test suite times out after 2 minutes in watch mode'
+    suggested_action: 'Investigate test performance, optimize slow tests or adjust timeout configuration'
+  - id: 'TECH-003'
     severity: low
-    finding: "Vite CJS Node API deprecation warning during test execution"
-    suggested_action: "Migrate to ESM-based Vite configuration per https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated"
+    finding: 'Vite CJS Node API deprecation warning during test execution'
+    suggested_action: 'Migrate to ESM-based Vite configuration per https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated'
 
 # Risk mitigation verified
 risk_summary:
   totals:
-    critical: 0  # All 3 critical risks (SEC-001, SEC-002, SEC-003) mitigated
-    high: 0      # All 3 high risks (SEC-004, SEC-005, OPS-001) addressed
-    medium: 4    # Accepted for MVP (PERF-001, TECH-001, DATA-001, TECH-002)
-    low: 2       # Accepted architectural choices (OPS-002, BUS-001)
+    critical: 0 # All 3 critical risks (SEC-001, SEC-002, SEC-003) mitigated
+    high: 0 # All 3 high risks (SEC-004, SEC-005, OPS-001) addressed
+    medium: 4 # Accepted for MVP (PERF-001, TECH-001, DATA-001, TECH-002)
+    low: 2 # Accepted architectural choices (OPS-002, BUS-001)
   highest: medium
   recommendations:
-    must_fix: []  # All critical/high risks resolved
+    must_fix: [] # All critical/high risks resolved
     monitor:
-      - "Login endpoint performance (target <1s, bcrypt intentionally slow)"
-      - "Authentication monitoring setup (logging present, alerting deferred)"
+      - 'Login endpoint performance (target <1s, bcrypt intentionally slow)'
+      - 'Authentication monitoring setup (logging present, alerting deferred)'
 
 # Gate passes - no waiver needed
 waiver: { active: false }
@@ -60,46 +60,46 @@ nfr_validation:
       SEC-005 (Username Enumeration): Generic error messages, timing-safe responses
   performance:
     status: PASS
-    notes: "bcrypt intentionally slow for security (PERF-001 accepted). Middleware overhead minimal (TECH-002)."
+    notes: 'bcrypt intentionally slow for security (PERF-001 accepted). Middleware overhead minimal (TECH-002).'
   reliability:
     status: PASS
-    notes: "8-hour token expiration, session persistence across refresh (DATA-001). 68/68 tests passing."
+    notes: '8-hour token expiration, session persistence across refresh (DATA-001). 68/68 tests passing.'
   maintainability:
     status: PASS
-    notes: "TypeScript strict mode, zero ESLint errors, comprehensive test coverage, clear separation of concerns."
+    notes: 'TypeScript strict mode, zero ESLint errors, comprehensive test coverage, clear separation of concerns.'
 
 # Implementation quality metrics
-quality_score: 100  # All ACs met, all critical risks mitigated, zero issues
+quality_score: 100 # All ACs met, all critical risks mitigated, zero issues
 
 # Detailed acceptance criteria validation
 acceptance_criteria_validation:
   - ac: 1
     status: PASS
-    evidence: "app/login/page.tsx with username/password form using React Hook Form + Zod"
+    evidence: 'app/login/page.tsx with username/password form using React Hook Form + Zod'
   - ac: 2
     status: PASS
-    evidence: "app/api/auth/login/route.ts implements POST endpoint with validation"
+    evidence: 'app/api/auth/login/route.ts implements POST endpoint with validation'
   - ac: 3
     status: PASS
-    evidence: "lib/auth/password.ts uses bcrypt (SALT_ROUNDS=10), lib/auth/constants.ts has hardcoded user"
+    evidence: 'lib/auth/password.ts uses bcrypt (SALT_ROUNDS=10), lib/auth/constants.ts has hardcoded user'
   - ac: 4
     status: PASS
     evidence: "lib/auth/jwt.ts generates tokens with 8-hour expiration (expiresIn: '8h')"
   - ac: 5
     status: PASS
-    evidence: "Login endpoint sets httpOnly cookie with secure, sameSite=lax, 8-hour maxAge"
+    evidence: 'Login endpoint sets httpOnly cookie with secure, sameSite=lax, 8-hour maxAge'
   - ac: 6
     status: PASS
-    evidence: "middleware.ts verifies JWT on all protected routes, returns 401 for invalid/missing tokens"
+    evidence: 'middleware.ts verifies JWT on all protected routes, returns 401 for invalid/missing tokens'
   - ac: 7
     status: PASS
-    evidence: "middleware.ts redirects unauthenticated users to /login for protected pages"
+    evidence: 'middleware.ts redirects unauthenticated users to /login for protected pages'
   - ac: 8
     status: PASS
-    evidence: "app/api/auth/logout/route.ts clears auth-token cookie, Header has logout button"
+    evidence: 'app/api/auth/logout/route.ts clears auth-token cookie, Header has logout button'
   - ac: 9
     status: PASS
-    evidence: "httpOnly cookie with 8-hour maxAge persists authentication across refresh"
+    evidence: 'httpOnly cookie with 8-hour maxAge persists authentication across refresh'
   - ac: 10
     status: PASS
     evidence: "Login API returns 401 with generic 'Invalid username or password' for all failures"
@@ -108,24 +108,24 @@ acceptance_criteria_validation:
 security_controls_verified:
   SEC-001_jwt_secret:
     status: MITIGATED
-    implementation: "Strong JWT_SECRET generated in .env.local (32+ chars), .env.example has instructions"
-    tests: "lib/auth/jwt.test.ts - token generation/verification with valid/invalid tokens"
+    implementation: 'Strong JWT_SECRET generated in .env.local (32+ chars), .env.example has instructions'
+    tests: 'lib/auth/jwt.test.ts - token generation/verification with valid/invalid tokens'
   SEC-002_password_security:
     status: MITIGATED
-    implementation: "bcrypt with SALT_ROUNDS=10, timing-safe bcrypt.compare()"
-    tests: "lib/auth/password.test.ts - hashing produces different hashes, verification secure"
+    implementation: 'bcrypt with SALT_ROUNDS=10, timing-safe bcrypt.compare()'
+    tests: 'lib/auth/password.test.ts - hashing produces different hashes, verification secure'
   SEC-003_token_storage:
     status: MITIGATED
-    implementation: "httpOnly cookies (not localStorage), secure flag in production, sameSite=lax"
-    tests: "app/api/auth/login/route.test.ts - cookie security attributes verified"
+    implementation: 'httpOnly cookies (not localStorage), secure flag in production, sameSite=lax'
+    tests: 'app/api/auth/login/route.test.ts - cookie security attributes verified'
   SEC-004_input_validation:
     status: MITIGATED
-    implementation: "Zod validation on all inputs (lib/validation/schemas.ts), SQL/XSS tests"
-    tests: "app/api/auth/login/route.test.ts - SQL injection and XSS payload tests passing"
+    implementation: 'Zod validation on all inputs (lib/validation/schemas.ts), SQL/XSS tests'
+    tests: 'app/api/auth/login/route.test.ts - SQL injection and XSS payload tests passing'
   SEC-005_username_enumeration:
     status: MITIGATED
     implementation: "Generic error message 'Invalid username or password' for all auth failures"
-    tests: "app/api/auth/login/route.test.ts - identical errors for username/password failures"
+    tests: 'app/api/auth/login/route.test.ts - identical errors for username/password failures'
 
 # Test coverage summary (verified 2025-10-04)
 test_coverage:
@@ -139,7 +139,7 @@ test_coverage:
     database_client: 6
     login_api: 10
     logout_api: 3
-    security_tests: "SQL injection, XSS prevention"
+    security_tests: 'SQL injection, XSS prevention'
     component_tests: 8
     health_check: 5
     api_client: 9
@@ -159,52 +159,52 @@ test_coverage:
 # Accepted risks (medium/low priority)
 accepted_risks:
   PERF-001:
-    reason: "bcrypt intentionally slow for security (SALT_ROUNDS=10 industry standard)"
-    impact: "Login may take 200-500ms, acceptable for security benefit"
+    reason: 'bcrypt intentionally slow for security (SALT_ROUNDS=10 industry standard)'
+    impact: 'Login may take 200-500ms, acceptable for security benefit'
   TECH-001:
-    reason: "Server-side token verification is authoritative, client optimization deferred"
-    impact: "Expired tokens used until server rejects, graceful 401 handling implemented"
+    reason: 'Server-side token verification is authoritative, client optimization deferred'
+    impact: 'Expired tokens used until server rejects, graceful 401 handling implemented'
   DATA-001:
-    reason: "8-hour token expiration acceptable for MVP, cookie persistence working"
-    impact: "Session expires after 8 hours, acceptable for teacher workflow"
+    reason: '8-hour token expiration acceptable for MVP, cookie persistence working'
+    impact: 'Session expires after 8 hours, acceptable for teacher workflow'
   TECH-002:
-    reason: "Next.js middleware designed for this use case, performance acceptable"
-    impact: "Minimal overhead, monitoring in place"
+    reason: 'Next.js middleware designed for this use case, performance acceptable'
+    impact: 'Minimal overhead, monitoring in place'
   OPS-002:
-    reason: "Stateless JWT design, no token blacklist (accepted architectural choice)"
-    impact: "Stolen tokens valid until expiration (8 hours), short expiration mitigates risk"
+    reason: 'Stateless JWT design, no token blacklist (accepted architectural choice)'
+    impact: 'Stolen tokens valid until expiration (8 hours), short expiration mitigates risk'
   BUS-001:
-    reason: "Single hardcoded user is explicit MVP requirement (AC 3)"
-    impact: "No multi-user support, planned for future database migration"
+    reason: 'Single hardcoded user is explicit MVP requirement (AC 3)'
+    impact: 'No multi-user support, planned for future database migration'
 
 # Recommendations for future iterations
 recommendations:
-  immediate: []  # No blocking issues
+  immediate: [] # No blocking issues
   future:
-    - action: "Implement authentication monitoring and alerting (OPS-001)"
+    - action: 'Implement authentication monitoring and alerting (OPS-001)'
       priority: high
-      refs: ["app/api/auth/login/route.ts - add structured logging for SIEM"]
-    - action: "Consider rate limiting on auth endpoints"
+      refs: ['app/api/auth/login/route.ts - add structured logging for SIEM']
+    - action: 'Consider rate limiting on auth endpoints'
       priority: medium
-      refs: ["Future enhancement to prevent brute force attacks"]
-    - action: "Plan database-backed user system migration"
+      refs: ['Future enhancement to prevent brute force attacks']
+    - action: 'Plan database-backed user system migration'
       priority: low
-      refs: ["Replace lib/auth/constants.ts hardcoded user with database"]
-    - action: "Add token refresh mechanism for better UX"
+      refs: ['Replace lib/auth/constants.ts hardcoded user with database']
+    - action: 'Add token refresh mechanism for better UX'
       priority: low
-      refs: ["Extend session without requiring re-login"]
+      refs: ['Extend session without requiring re-login']
 
 # Gate decision history
 history:
-  - at: "2025-10-04T00:00:00Z"
+  - at: '2025-10-04T00:00:00Z'
     gate: PASS
-    note: "Initial review post-implementation: All ACs met, all critical risks mitigated, 68/68 tests passing, zero technical debt"
-  - at: "2025-10-04T01:26:00Z"
+    note: 'Initial review post-implementation: All ACs met, all critical risks mitigated, 68/68 tests passing, zero technical debt'
+  - at: '2025-10-04T01:26:00Z'
     gate: FAIL
-    note: "TEST-001: 3 database tests failing with foreign key constraints (lib/db/client.test.ts)"
-  - at: "2025-10-04T01:50:00Z"
+    note: 'TEST-001: 3 database tests failing with foreign key constraints (lib/db/client.test.ts)'
+  - at: '2025-10-04T01:50:00Z'
     gate: PASS
-    note: "TEST-001 RESOLVED: Database schema synchronized with pnpm db:push, all 68 tests passing"
+    note: 'TEST-001 RESOLVED: Database schema synchronized with pnpm db:push, all 68 tests passing'
 
 # Final quality assessment
 final_assessment: |

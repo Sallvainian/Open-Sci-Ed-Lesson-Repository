@@ -1,11 +1,11 @@
 # Quality Gate Decision - Story 1.2
 schema: 1
-story: "1.2"
-story_title: "Database Setup and Schema Foundation"
+story: '1.2'
+story_title: 'Database Setup and Schema Foundation'
 gate: PASS
-status_reason: "Exemplary implementation with perfect schema alignment, comprehensive testing, and zero issues identified"
-reviewer: "Quinn (Test Architect)"
-updated: "2025-10-03T22:30:00Z"
+status_reason: 'Exemplary implementation with perfect schema alignment, comprehensive testing, and zero issues identified'
+reviewer: 'Quinn (Test Architect)'
+updated: '2025-10-03T22:30:00Z'
 
 waiver: { active: false }
 
@@ -29,16 +29,16 @@ evidence:
 nfr_validation:
   security:
     status: PASS
-    notes: "Environment variables properly used for DATABASE_URL, no credentials hardcoded, singleton pattern prevents connection leaks"
+    notes: 'Environment variables properly used for DATABASE_URL, no credentials hardcoded, singleton pattern prevents connection leaks'
   performance:
     status: PASS
-    notes: "Proper indexes on disciplineId, unitId, scheduledDate, status for query optimization"
+    notes: 'Proper indexes on disciplineId, unitId, scheduledDate, status for query optimization'
   reliability:
     status: PASS
-    notes: "Cascade delete constraints ensure referential integrity, comprehensive error handling in tests"
+    notes: 'Cascade delete constraints ensure referential integrity, comprehensive error handling in tests'
   maintainability:
     status: PASS
-    notes: "Clean schema design, well-structured tests, excellent documentation"
+    notes: 'Clean schema design, well-structured tests, excellent documentation'
 
 recommendations:
   immediate: []
