@@ -8,7 +8,7 @@ export async function GET(): Promise<NextResponse> {
 
     return NextResponse.json(
       {
-        status: 'healthy',
+        status: 'ok',
         timestamp: new Date().toISOString(),
         checks: {
           database: 'ok',
