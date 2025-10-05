@@ -128,7 +128,51 @@ so that I can access my lesson planning tool from any internet-connected device.
 9. Automated daily backups configured for production database (via hosting provider feature or scheduled task)
 10. Application remains accessible and functional after deployment with no critical errors in logs
 
-## Story 1.8: Landing Page with Navigation Foundation
+## Story 1.8: Middleware Integration Tests + Vite CJS Fix
+
+As a developer,
+I want comprehensive integration tests for authentication middleware and elimination of Vite CJS deprecation warnings,
+so that critical security components are validated and the development experience is clean without annoying warnings.
+
+**Acceptance Criteria:**
+
+1. Middleware test file created at `middleware.test.ts` with 20 integration test scenarios
+2. All public paths tested (login, auth endpoints, health check) bypass authentication correctly
+3. Protected page routes redirect to `/login` with 303 status when unauthenticated
+4. Protected API routes return 401 JSON response when unauthenticated
+5. Valid JWT tokens allow access to protected routes (NextResponse.next() called)
+6. Invalid/expired tokens trigger authentication failure handling
+7. OPTIONS requests return 200 with CORS headers without authentication requirement
+8. CORS origin validation tested (localhost:3000, localhost:3001, \*.vercel.app domains)
+9. Request logging verified for all middleware executions
+10. `x-middleware-cache: no-cache` header set on all responses
+11. Package.json updated with `"type": "module"` to fix Vite CJS deprecation warning
+12. All tests pass successfully with no Vite warnings during test execution
+13. Middleware coverage reaches 95%+ (from current 0%)
+14. Test execution completes in <10 seconds for fast CI/CD feedback
+
+## Story 1.9: Error Handler, Health Endpoint, and Header Component Tests
+
+As a developer,
+I want comprehensive tests for error handling utilities, health endpoint error paths, and Header component error scenarios,
+so that critical error paths are validated, coverage gaps are closed, and the application handles failures gracefully.
+
+**Acceptance Criteria:**
+
+1. Error handler test file created at `lib/api/errorHandler.test.ts` with coverage increasing from 27.77% to 95%+
+2. Health endpoint error path tested (Prisma query failure scenario) with coverage increasing from 68.96% to 100%
+3. Health endpoint test file modified with 2 additional error path tests
+4. Header component test file created at `components/layout/Header.test.tsx` with coverage increasing from 66.66% to 100%
+5. Header component error handling tested (logout failure scenarios, async state management)
+6. Prisma error codes tested: P2002 (unique constraint), P2025 (record not found), unknown codes
+7. Custom error classes tested: NotFoundError, ValidationError, UnauthorizedError, ForbiddenError
+8. Environment-specific error messaging tested (development vs production message differences)
+9. ZodError validation failures tested with proper error classification
+10. Console error logging verified for all error scenarios
+11. All tests pass successfully with no failures
+12. Overall project coverage increases from 58.93% to 95%+
+
+## Story 1.10: Landing Page with Navigation Foundation
 
 As a user,
 I want to see a welcoming landing page after login with basic navigation structure,

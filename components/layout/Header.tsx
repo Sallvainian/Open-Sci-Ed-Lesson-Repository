@@ -11,10 +11,14 @@ export function Header(): JSX.Element {
   const handleLogout = async (): Promise<void> => {
     try {
       setIsLoggingOut(true);
-      await fetch('/api/auth/logout', {
+      const response = await fetch('/api/auth/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });
+
+      if (!response.ok) {
+        throw new Error(`Logout failed with status: ${response.status}`);
+      }
 
       // Redirect to login page after successful logout
       router.push('/login');
