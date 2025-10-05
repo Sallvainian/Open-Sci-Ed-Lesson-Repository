@@ -11,6 +11,7 @@
 **Session Goals:** Explore and define a tool for organizing science teaching materials, specifically OpenSciEd curriculum content, to support effective lesson planning and reduce preparation time.
 
 **Techniques Used:**
+
 - What If Scenarios (5 min)
 - First Principles Thinking (10 min)
 - Exploratory Questioning (25 min)
@@ -19,6 +20,7 @@
 **Total Ideas Generated:** ~20 core concepts and requirements
 
 **Key Themes Identified:**
+
 - Content organization (90%) over content creation (10%)
 - Dual navigation modes: conceptual hierarchy and chronological sequence
 - Curated OpenSciEd materials with consistent lesson page structure
@@ -43,11 +45,13 @@
 5. **Success Definition:** Everything is findable without searching through multiple sources
 
 **Insights Discovered:**
+
 - The tool is not about creating new content but organizing existing OpenSciEd materials
 - The user is a newer teacher who struggles with planning compared to veteran colleagues
 - Good teaching requires good planning, and this tool removes content preparation surprises
 
 **Notable Connections:**
+
 - Connection between planning confidence and teaching effectiveness
 - Relationship between content organization and reduced cognitive load during preparation
 
@@ -77,12 +81,14 @@
 9. **Structured Order:** Lesson pages should follow consistent, defined section order
 
 **Insights Discovered:**
+
 - Teachers are rarely perfectly on pace with curriculum calendars
 - The user needs flexibility to switch between conceptual and sequential navigation
 - OpenSciEd provides excellent content but overwhelming volume makes it difficult to use efficiently
 - Consistent structure across lesson pages is critical for predictable workflow
 
 **Notable Connections:**
+
 - Teaching workflow challenges mirror information architecture problems
 - Dual navigation modes reflect dual mental models teachers use when planning
 - Personal tool can later scale to team usage if successful
@@ -101,6 +107,7 @@
 4. **OAuth Integration:** Potential future feature for AI-assisted content creation (deferred for now)
 
 **Insights Discovered:**
+
 - User values pre-vetted, curated resources over algorithmic suggestions
 - Simplicity in adding new lessons is important for ongoing maintenance
 - AI integration is interesting but not part of minimum viable product
@@ -120,6 +127,7 @@
 5. **UI Reference:** User has example UI stack to share for design inspiration
 
 **Insights Discovered:**
+
 - One-sentence description crystallized the tool's purpose
 - Success is measured by elimination of search friction, not feature richness
 - Tool should feel like a natural extension of teaching workflow
@@ -129,7 +137,8 @@
 ## Idea Categorization
 
 ### Immediate Opportunities
-*Ideas ready to implement now*
+
+_Ideas ready to implement now_
 
 1. **Define Lesson Page Template Structure**
    - Description: Establish the exact sections, order, and fields for each lesson page
@@ -152,7 +161,8 @@
    - Resources needed: Discussion with user about starting point
 
 ### Future Innovations
-*Ideas requiring development/research*
+
+_Ideas requiring development/research_
 
 1. **Google Drive Import Workflow**
    - Description: Tool to bulk-import materials from Google Drive to application storage
@@ -175,7 +185,8 @@
    - Timeline estimate: Phase 3+, after core tool is stable
 
 ### Moonshots
-*Ambitious, transformative concepts*
+
+_Ambitious, transformative concepts_
 
 1. **AI-Assisted Content Creation Workflow**
    - Description: OAuth integration with Claude/ChatGPT to help generate lesson page content using defined workflows
@@ -193,7 +204,8 @@
    - Challenges to overcome: Data collection, machine learning implementation, privacy concerns
 
 ### Insights & Learnings
-*Key realizations from the session*
+
+_Key realizations from the session_
 
 - **Good teaching = good planning**: The fundamental insight driving this project. Teachers who plan well teach better, and this tool aims to make planning efficient and reliable.
 
@@ -291,4 +303,4 @@
 
 ---
 
-*Session facilitated using the BMAD-METHOD™ brainstorming framework*
+_Session facilitated using the BMAD-METHOD™ brainstorming framework_
