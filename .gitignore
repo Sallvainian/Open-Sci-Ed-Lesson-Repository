@@ -42,6 +42,9 @@ vercel-env.txt
 # Serena MCP memory
 .serena/
 
+# Database snapshots
+.ai/
+
 # Vercel
 .vercel
 
