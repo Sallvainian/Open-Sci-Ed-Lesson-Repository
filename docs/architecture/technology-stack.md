@@ -18,7 +18,7 @@
 | **File Viewing**        | react-pdf + Custom      | -       | PDF rendering, PPTX/DOCX viewers                                      |
 | **Backend Framework**   | Next.js API Routes      | 14.x    | Serverless functions, colocated with frontend                         |
 | **Backend Language**    | TypeScript              | 5.x     | Shared types with frontend, type-safe APIs                            |
-| **Database**            | PostgreSQL              | 15.x    | Relational data model, JSONB for flexibility, mature ecosystem        |
+| **Database**            | PostgreSQL              | 17.x    | Relational data model, JSONB for flexibility, mature ecosystem        |
 | **Database ORM**        | Prisma                  | 5.x     | Type-safe queries, schema migrations, excellent DX                    |
 | **Database Provider**   | Supabase                | -       | Managed PostgreSQL, auto-scaling, generous free tier                  |
 | **File Storage**        | Supabase Storage        | -       | S3-compatible, integrated auth, <$20/month target                     |

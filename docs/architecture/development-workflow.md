@@ -6,7 +6,7 @@
 
 - Node.js 18.x or higher
 - pnpm 8.x
-- PostgreSQL 15.x (or Supabase account)
+- PostgreSQL 17.x (or Supabase account)
 
 **Initial Setup**:
 
