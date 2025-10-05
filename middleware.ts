@@ -39,7 +39,11 @@ export function middleware(request: NextRequest): NextResponse {
           { status: 401 }
         );
       }
-      return NextResponse.redirect(new URL('/login', request.url));
+      const redirectResponse = NextResponse.redirect(new URL('/login', request.url), {
+        status: 303,
+      });
+      redirectResponse.headers.set('x-middleware-cache', 'no-cache');
+      return redirectResponse;
     }
 
     // Verify token validity
@@ -54,7 +58,11 @@ export function middleware(request: NextRequest): NextResponse {
           { status: 401 }
         );
       }
-      return NextResponse.redirect(new URL('/login', request.url));
+      const redirectResponse = NextResponse.redirect(new URL('/login', request.url), {
+        status: 303,
+      });
+      redirectResponse.headers.set('x-middleware-cache', 'no-cache');
+      return redirectResponse;
     }
 
     // eslint-disable-next-line no-console
@@ -63,6 +71,9 @@ export function middleware(request: NextRequest): NextResponse {
 
   // Continue with the request
   const response = NextResponse.next();
+
+  // Disable caching to ensure cookies are always read fresh (GitHub #59218, #72170)
+  response.headers.set('x-middleware-cache', 'no-cache');
 
   // Add CORS headers
   response.headers.set('Access-Control-Allow-Origin', getAllowedOrigin(request));
