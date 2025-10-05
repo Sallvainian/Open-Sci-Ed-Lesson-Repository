@@ -30,6 +30,8 @@ export function middleware(request: NextRequest): NextResponse {
     const token = request.cookies.get('auth-token')?.value;
 
     if (!token) {
+      // eslint-disable-next-line no-console
+      console.log(`[AUTH] No token found for ${pathname}`);
       // API routes return 401, pages redirect to login
       if (pathname.startsWith('/api')) {
         return NextResponse.json(
@@ -43,6 +45,8 @@ export function middleware(request: NextRequest): NextResponse {
     // Verify token validity
     const payload = verifyToken(token);
     if (!payload) {
+      // eslint-disable-next-line no-console
+      console.log(`[AUTH] Token verification failed for ${pathname}`);
       // API routes return 401, pages redirect to login
       if (pathname.startsWith('/api')) {
         return NextResponse.json(
@@ -52,6 +56,9 @@ export function middleware(request: NextRequest): NextResponse {
       }
       return NextResponse.redirect(new URL('/login', request.url));
     }
+
+    // eslint-disable-next-line no-console
+    console.log(`[AUTH] Token verified for ${pathname}, user: ${payload.username}`);
   }
 
   // Continue with the request
