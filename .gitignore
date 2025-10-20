@@ -39,6 +39,7 @@ bmad/
 .cursor/
 .gemini/
 .serena/
+.mcp.json
 AGENTS.md
 CLAUDE.md
 opencode.jsonc
