@@ -1,0 +1,29 @@
+[
+  {
+    "id": "life-science",
+    "name": "Life Science",
+    "slug": "life-science",
+    "description": "Study of living organisms, ecosystems, and biological processes",
+    "iconName": "leaf",
+    "color": "bg-green-600",
+    "unitCount": 15
+  },
+  {
+    "id": "earth-space",
+    "name": "Earth & Space Science",
+    "slug": "earth-space",
+    "description": "Study of Earth systems, astronomy, and planetary science",
+    "iconName": "globe",
+    "color": "bg-blue-600",
+    "unitCount": 15
+  },
+  {
+    "id": "physical-science",
+    "name": "Physical Science",
+    "slug": "physical-science",
+    "description": "Study of matter, energy, forces, and chemical reactions",
+    "iconName": "atom",
+    "color": "bg-purple-600",
+    "unitCount": 15
+  }
+]

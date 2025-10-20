@@ -1,0 +1,85 @@
+{
+  "id": "10.1.1",
+  "title": "Earth's Climate System",
+  "disciplineId": "earth-space",
+  "disciplineSlug": "earth-space",
+  "unitId": "10.1",
+  "unitTitle": "Earth's Systems and Climate",
+  "duration": "50 minutes",
+  "standards": ["MS-ESS2-6", "MS-ESS3-5"],
+  "objectives": [
+    "Describe the major components of Earth's climate system",
+    "Explain how energy from the sun drives climate",
+    "Analyze data showing climate patterns"
+  ],
+  "materials": [
+    { "quantity": "Per Group", "description": "Climate data graphs", "audience": "both" },
+    { "quantity": "Per Student", "description": "Climate system diagram", "audience": "both" },
+    { "quantity": "Per Class", "description": "Globe or world map", "audience": "both" }
+  ],
+  "sequence": [
+    {
+      "phase": "Engage",
+      "duration": 10,
+      "description": "Discuss recent weather and climate patterns in local area",
+      "audience": "both"
+    },
+    {
+      "phase": "Explore",
+      "duration": 18,
+      "description": "Analyze climate data graphs from different regions",
+      "audience": "both"
+    },
+    {
+      "phase": "Explain",
+      "duration": 12,
+      "description": "Teacher presents climate system components and interactions",
+      "audience": "both"
+    },
+    {
+      "phase": "Elaborate",
+      "duration": 5,
+      "description": "Students create concept maps of climate system",
+      "audience": "both"
+    },
+    {
+      "phase": "Evaluate",
+      "duration": 5,
+      "description": "Written response: How does sun's energy drive climate?",
+      "audience": "teacher"
+    }
+  ],
+  "teachingGuidance": {
+    "misconceptions": [
+      "Students may confuse weather and climate",
+      "Students may think climate doesn't change naturally"
+    ],
+    "keyQuestions": [
+      "What is the difference between weather and climate?",
+      "How do Earth's systems interact to create climate?"
+    ],
+    "differentiationNotes": "Provide sentence stems for students needing writing support",
+    "audience": "teacher"
+  },
+  "resources": [
+    {
+      "type": "PDF",
+      "title": "Climate Data Graphs",
+      "url": "/resources/10.1.1-climate-data.pdf",
+      "audience": "both"
+    },
+    {
+      "type": "PPT",
+      "title": "Climate Systems Presentation",
+      "url": "/resources/10.1.1-climate-slides.pptx",
+      "audience": "teacher"
+    },
+    {
+      "type": "URL",
+      "title": "Interactive Climate Model",
+      "url": "https://example.com/climate-model",
+      "audience": "both"
+    }
+  ],
+  "audience": "both"
+}

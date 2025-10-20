@@ -1,0 +1,42 @@
+[
+  {
+    "id": "6.1",
+    "title": "Genetics and Heredity",
+    "disciplineSlug": "life-science",
+    "lessonCount": 12,
+    "estimatedDuration": "3 weeks",
+    "description": "How do organisms inherit traits from their parents?"
+  },
+  {
+    "id": "7.1",
+    "title": "Ecosystems and Energy Flow",
+    "disciplineSlug": "life-science",
+    "lessonCount": 10,
+    "estimatedDuration": "2.5 weeks",
+    "description": "How do energy and matter flow through ecosystems?"
+  },
+  {
+    "id": "8.1",
+    "title": "Chemical Reactions and Matter",
+    "disciplineSlug": "physical-science",
+    "lessonCount": 10,
+    "estimatedDuration": "2.5 weeks",
+    "description": "What happens during chemical reactions?"
+  },
+  {
+    "id": "9.1",
+    "title": "Forces and Motion",
+    "disciplineSlug": "physical-science",
+    "lessonCount": 8,
+    "estimatedDuration": "2 weeks",
+    "description": "How do forces affect the motion of objects?"
+  },
+  {
+    "id": "10.1",
+    "title": "Earth's Systems and Climate",
+    "disciplineSlug": "earth-space",
+    "lessonCount": 12,
+    "estimatedDuration": "3 weeks",
+    "description": "How do Earth's systems interact to shape our climate?"
+  }
+]

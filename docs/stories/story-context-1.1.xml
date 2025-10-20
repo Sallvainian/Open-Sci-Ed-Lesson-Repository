@@ -1,0 +1,182 @@
+<story-context id="story-1.1" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>1.1</storyId>
+    <title>Define JSON Data Schema and Structure</title>
+    <status>Ready</status>
+    <generatedAt>2025-10-14</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/stories/story-1.1.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>developer</asA>
+    <iWant>a well-defined JSON schema for curriculum data</iWant>
+    <soThat>I can structure lesson content consistently and enable efficient data loading</soThat>
+    <tasks>
+      <task id="1" name="Define TypeScript Type Definitions">
+        <subtask id="1.1">Create lib/types/lesson.ts file</subtask>
+        <subtask id="1.2">Define Discipline, Unit, Lesson, LessonMaterial, LessonPhase, TeachingGuidance, Resource interfaces</subtask>
+        <subtask id="1.3">Add audience tagging fields ('teacher' | 'student' | 'both') to support future student-facing views (FR-12)</subtask>
+        <subtask id="1.4">Document all type definitions with JSDoc comments</subtask>
+      </task>
+      <task id="2" name="Create JSON Data Files">
+        <subtask id="2.1">Create data/disciplines.json with 3 disciplines (Life Science, Earth &amp; Space Science, Physical Science)</subtask>
+        <subtask id="2.2">Create data/units.json with initial 3-5 units distributed across disciplines</subtask>
+        <subtask id="2.3">Create data/lessons/ directory</subtask>
+        <subtask id="2.4">Create 3-5 example lesson JSON files (e.g., lesson-8.1.2.json) following the schema</subtask>
+        <subtask id="2.5">Ensure all lesson data includes audience tags where applicable</subtask>
+      </task>
+      <task id="3" name="Implement Data Loader Utilities">
+        <subtask id="3.1">Create lib/data/loader.ts file</subtask>
+        <subtask id="3.2">Implement getAllDisciplines() function</subtask>
+        <subtask id="3.3">Implement getDisciplineBySlug() function</subtask>
+        <subtask id="3.4">Implement getUnitsByDiscipline() function</subtask>
+        <subtask id="3.5">Implement getUnitById() function</subtask>
+        <subtask id="3.6">Implement getLesson() async function with dynamic import</subtask>
+        <subtask id="3.7">Implement getLessonIdsByUnit() function for SSG</subtask>
+        <subtask id="3.8">Implement getAllLessons() function for static param generation</subtask>
+      </task>
+      <task id="4" name="Create Schema Validation Script">
+        <subtask id="4.1">Install Zod dependency: pnpm add zod</subtask>
+        <subtask id="4.2">Create scripts/validate-data.ts file</subtask>
+        <subtask id="4.3">Define Zod schemas matching TypeScript interfaces</subtask>
+        <subtask id="4.4">Implement validation function for disciplines.json</subtask>
+        <subtask id="4.5">Implement validation function for units.json</subtask>
+        <subtask id="4.6">Implement validation function for all lesson JSON files</subtask>
+        <subtask id="4.7">Add validation script to package.json: "validate-data": "tsx scripts/validate-data.ts"</subtask>
+        <subtask id="4.8">Add pre-build hook: "prebuild": "pnpm validate-data"</subtask>
+      </task>
+      <task id="5" name="Documentation and Testing">
+        <subtask id="5.1">Document JSON schema structure in tech-spec-epic-1.md (already exists)</subtask>
+        <subtask id="5.2">Create example JSON files with comments explaining each field</subtask>
+        <subtask id="5.3">Run validation script and verify all data files pass</subtask>
+        <subtask id="5.4">Test data loader utilities with sample data</subtask>
+        <subtask id="5.5">Verify TypeScript type checking passes with no errors</subtask>
+        <subtask id="5.6">Confirm schema supports future audience-based filtering (Epic 4, FR-12)</subtask>
+      </task>
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+    <criterion id="AC1">JSON schema defines three-level hierarchy: Disciplines → Units → Lessons</criterion>
+    <criterion id="AC2">Discipline object includes: id, name, slug, description, iconName, color, unitCount</criterion>
+    <criterion id="AC3">Unit object includes: id, title, disciplineSlug, lessonCount, estimatedDuration, description</criterion>
+    <criterion id="AC4">Lesson object includes:
+      - Basic info: id, title, disciplineId, disciplineSlug, unitId, unitTitle, duration
+      - Content: objectives (WALTs), materials list, sequence (5E phases), teachingGuidance
+      - Resources: array of resource links with type, title, url
+      - Metadata: standards alignment, audience tags (teacher/student/both)</criterion>
+    <criterion id="AC5">Schema documented with TypeScript interfaces in lib/types/lesson.ts</criterion>
+    <criterion id="AC6">Schema validation script created using Zod and tested</criterion>
+    <criterion id="AC7">Initial data files created for 3-5 units across all three disciplines</criterion>
+    <criterion id="AC8">Data structure supports future expansion without breaking changes (audience tagging for FR-12)</criterion>
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <artifact>
+        <path>docs/PRD.md</path>
+        <title>Product Requirements Document</title>
+        <section>FR-5: Static Data Structure with JSON Backend</section>
+        <snippet>Lesson data stored in structured JSON format. Static JSON files in repository. TypeScript type definitions for all data structures. Validation scripts ensure data integrity. Clean JSON schema enables easy content updates.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/PRD.md</path>
+        <title>Product Requirements Document</title>
+        <section>FR-12: Student-Facing View Foundation</section>
+        <snippet>Audience tagging system (teacher/student/both) for all content. Allows future Phase 3 expansion to student interface without schema changes.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/solution-architecture.md</path>
+        <title>Solution Architecture Document</title>
+        <section>§2.4 Data Fetching Approach</section>
+        <snippet>Static JSON files loaded at build time. Disciplines and units in single files, lessons in individual files for code splitting. Dynamic imports for lessons enable optimal performance.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/solution-architecture.md</path>
+        <title>Solution Architecture Document</title>
+        <section>§3.1 TypeScript Type Definitions</section>
+        <snippet>Complete interface definitions for Discipline, Unit, Lesson, LessonMaterial, LessonPhase, TeachingGuidance, Resource. All types include audience field for future student views.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/tech-spec-epic-1.md</path>
+        <title>Technical Specification: Epic 1</title>
+        <section>§3.1 Story 1.1: Define JSON Data Schema and Structure</section>
+        <snippet>Detailed implementation guidance including complete TypeScript interfaces, example JSON structures, data loader utilities, and Zod validation script with schema definitions.</snippet>
+      </artifact>
+    </docs>
+    <code>
+      <artifact>
+        <path>None yet - greenfield project</path>
+        <kind>N/A</kind>
+        <symbol>N/A</symbol>
+        <lines>N/A</lines>
+        <reason>This is the first implementation story - no existing code to reference</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <node>
+        <package name="next" version="15.0.0">Framework for SSG and routing</package>
+        <package name="react" version="19.0.0">UI library</package>
+        <package name="typescript" version="^5">Type safety</package>
+        <package name="zod" version="^3.22.4">Runtime validation</package>
+        <package name="tsx" version="^4.7.0">TypeScript execution for scripts</package>
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    <constraint id="C1">Use TypeScript strict mode for maximum type safety</constraint>
+    <constraint id="C2">Static JSON files must be valid JSON (no comments in data files)</constraint>
+    <constraint id="C3">All paths in data must be relative URLs (e.g., /resources/file.pdf)</constraint>
+    <constraint id="C4">Audience field defaults: 'both' for most content, 'teacher' for teaching guidance</constraint>
+    <constraint id="C5">JSON schema must support future database migration without breaking changes</constraint>
+    <constraint id="C6">Data loader functions must work at build time (Next.js SSG compatible)</constraint>
+    <constraint id="C7">Validation script must run before every build (pre-build hook)</constraint>
+    <constraint id="C8">File naming: disciplines.json, units.json, lessons/lesson-{id}.json</constraint>
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>getAllDisciplines</name>
+      <kind>Function</kind>
+      <signature>function getAllDisciplines(): Discipline[]</signature>
+      <path>lib/data/loader.ts</path>
+    </interface>
+    <interface>
+      <name>getDisciplineBySlug</name>
+      <kind>Function</kind>
+      <signature>function getDisciplineBySlug(slug: string): Discipline | undefined</signature>
+      <path>lib/data/loader.ts</path>
+    </interface>
+    <interface>
+      <name>getLesson</name>
+      <kind>Async Function</kind>
+      <signature>async function getLesson(lessonId: string): Promise&lt;Lesson&gt;</signature>
+      <path>lib/data/loader.ts</path>
+    </interface>
+    <interface>
+      <name>getAllLessons</name>
+      <kind>Function</kind>
+      <signature>function getAllLessons(): Array&lt;{discipline: string; unit: string; lesson: string}&gt;</signature>
+      <path>lib/data/loader.ts</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>Unit testing with Vitest for data loader functions. Validation script tests with Zod schemas. TypeScript compilation serves as type-level tests. Manual verification of JSON structure. Target 70% code coverage for utility functions.</standards>
+    <locations>
+      tests/unit/lib/data/loader.test.ts
+      scripts/validate-data.ts
+    </locations>
+    <ideas>
+      <test ac="AC1">Verify JSON files parse correctly and contain expected hierarchy</test>
+      <test ac="AC2-AC4">Validate Zod schemas correctly enforce type constraints</test>
+      <test ac="AC5">Test TypeScript compilation with strict mode enabled</test>
+      <test ac="AC6">Run validation script against sample invalid data to ensure it catches errors</test>
+      <test ac="AC7">Verify data loader functions return correct data for sample inputs</test>
+      <test ac="AC8">Test getAllLessons() returns proper format for Next.js generateStaticParams()</test>
+    </ideas>
+  </tests>
+</story-context>

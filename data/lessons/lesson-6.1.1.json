@@ -1,0 +1,79 @@
+{
+  "id": "6.1.1",
+  "title": "Introduction to Genetic Traits",
+  "disciplineId": "life-science",
+  "disciplineSlug": "life-science",
+  "unitId": "6.1",
+  "unitTitle": "Genetics and Heredity",
+  "duration": "45 minutes",
+  "standards": ["MS-LS3-1", "MS-LS3-2"],
+  "objectives": [
+    "Identify observable traits in organisms",
+    "Distinguish between inherited and acquired traits",
+    "Explain how traits are passed from parents to offspring"
+  ],
+  "materials": [
+    { "quantity": "Per Student", "description": "Trait observation worksheet", "audience": "both" },
+    { "quantity": "Per Class", "description": "Family photo samples (anonymized)", "audience": "both" },
+    { "quantity": "Per Group", "description": "Hand lenses", "audience": "both" }
+  ],
+  "sequence": [
+    {
+      "phase": "Engage",
+      "duration": 10,
+      "description": "Observe family resemblances in photos and discuss similarities",
+      "audience": "both"
+    },
+    {
+      "phase": "Explore",
+      "duration": 15,
+      "description": "Students observe and record their own observable traits",
+      "audience": "both"
+    },
+    {
+      "phase": "Explain",
+      "duration": 10,
+      "description": "Class discussion on heredity and trait inheritance",
+      "audience": "both"
+    },
+    {
+      "phase": "Elaborate",
+      "duration": 5,
+      "description": "Compare traits with family members to identify patterns",
+      "audience": "both"
+    },
+    {
+      "phase": "Evaluate",
+      "duration": 5,
+      "description": "Exit ticket: Distinguish inherited vs. acquired traits",
+      "audience": "teacher"
+    }
+  ],
+  "teachingGuidance": {
+    "misconceptions": [
+      "Students may think all traits are inherited",
+      "Students may not understand that traits come from both parents"
+    ],
+    "keyQuestions": [
+      "Which traits do you share with your family members?",
+      "Can you learn a trait, or does it have to be inherited?"
+    ],
+    "differentiationNotes": "Provide visual aids for students who need support identifying traits",
+    "audience": "teacher"
+  },
+  "resources": [
+    {
+      "type": "PDF",
+      "title": "Teacher Guide",
+      "url": "/resources/6.1.1-teacher-guide.pdf",
+      "audience": "teacher"
+    },
+    {
+      "type": "PDF",
+      "title": "Student Worksheet",
+      "url": "/resources/6.1.1-worksheet.pdf",
+      "audience": "both"
+    }
+  ],
+  "audience": "both"
+}

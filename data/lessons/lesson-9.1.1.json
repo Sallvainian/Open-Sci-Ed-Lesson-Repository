@@ -1,0 +1,73 @@
+{
+  "id": "9.1.1",
+  "title": "Introduction to Forces",
+  "disciplineId": "physical-science",
+  "disciplineSlug": "physical-science",
+  "unitId": "9.1",
+  "unitTitle": "Forces and Motion",
+  "duration": "40 minutes",
+  "standards": ["MS-PS2-1", "MS-PS2-2"],
+  "objectives": [
+    "Define force as a push or pull",
+    "Identify different types of forces in everyday situations",
+    "Measure forces using spring scales"
+  ],
+  "materials": [
+    { "quantity": "Per Group", "description": "Spring scale (0-10N)", "audience": "both" },
+    { "quantity": "Per Group", "description": "Assorted objects to measure", "audience": "both" },
+    { "quantity": "Per Student", "description": "Force observation worksheet", "audience": "both" }
+  ],
+  "sequence": [
+    {
+      "phase": "Engage",
+      "duration": 8,
+      "description": "Demonstrate tug-of-war and discuss forces involved",
+      "audience": "both"
+    },
+    {
+      "phase": "Explore",
+      "duration": 15,
+      "description": "Students use spring scales to measure forces on objects",
+      "audience": "both"
+    },
+    {
+      "phase": "Explain",
+      "duration": 10,
+      "description": "Define force and discuss units (Newtons)",
+      "audience": "both"
+    },
+    {
+      "phase": "Elaborate",
+      "duration": 5,
+      "description": "Identify forces in everyday activities",
+      "audience": "both"
+    },
+    {
+      "phase": "Evaluate",
+      "duration": 2,
+      "description": "Quick check: Name three forces observed today",
+      "audience": "teacher"
+    }
+  ],
+  "teachingGuidance": {
+    "misconceptions": [
+      "Students may think force and motion are the same thing",
+      "Students may not understand that forces can be balanced"
+    ],
+    "keyQuestions": [
+      "What forces are acting on this object right now?",
+      "How can we measure the strength of a force?"
+    ],
+    "differentiationNotes": "Pair students for spring scale measurements to support cooperation",
+    "audience": "teacher"
+  },
+  "resources": [
+    {
+      "type": "PDF",
+      "title": "Force Measurement Guide",
+      "url": "/resources/9.1.1-force-guide.pdf",
+      "audience": "both"
+    }
+  ],
+  "audience": "both"
+}

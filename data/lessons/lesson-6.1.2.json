@@ -1,0 +1,79 @@
+{
+  "id": "6.1.2",
+  "title": "DNA and Genetic Information",
+  "disciplineId": "life-science",
+  "disciplineSlug": "life-science",
+  "unitId": "6.1",
+  "unitTitle": "Genetics and Heredity",
+  "duration": "50 minutes",
+  "standards": ["MS-LS3-1"],
+  "objectives": [
+    "Describe the role of DNA in heredity",
+    "Explain how genetic information is stored in chromosomes",
+    "Model the structure of DNA using physical materials"
+  ],
+  "materials": [
+    { "quantity": "Per Group", "description": "DNA model kit", "audience": "both" },
+    { "quantity": "Per Student", "description": "DNA diagram handout", "audience": "both" },
+    { "quantity": "Per Class", "description": "Projector for DNA animations", "audience": "teacher" }
+  ],
+  "sequence": [
+    {
+      "phase": "Engage",
+      "duration": 8,
+      "description": "Watch short animation showing DNA replication",
+      "audience": "both"
+    },
+    {
+      "phase": "Explore",
+      "duration": 20,
+      "description": "Groups build DNA models using kits and identify components",
+      "audience": "both"
+    },
+    {
+      "phase": "Explain",
+      "duration": 12,
+      "description": "Teacher-led discussion on DNA structure and function",
+      "audience": "both"
+    },
+    {
+      "phase": "Elaborate",
+      "duration": 5,
+      "description": "Students diagram how DNA stores genetic information",
+      "audience": "both"
+    },
+    {
+      "phase": "Evaluate",
+      "duration": 5,
+      "description": "Quick quiz on DNA components and function",
+      "audience": "teacher"
+    }
+  ],
+  "teachingGuidance": {
+    "misconceptions": [
+      "Students may think DNA is the same as genes",
+      "Students may not understand that all cells contain DNA"
+    ],
+    "keyQuestions": [
+      "Where is DNA located in a cell?",
+      "How does DNA determine your traits?"
+    ],
+    "differentiationNotes": "Provide pre-labeled DNA models for students who need scaffolding",
+    "audience": "teacher"
+  },
+  "resources": [
+    {
+      "type": "PPT",
+      "title": "DNA Structure Presentation",
+      "url": "/resources/6.1.2-dna-slides.pptx",
+      "audience": "teacher"
+    },
+    {
+      "type": "URL",
+      "title": "DNA Animation Video",
+      "url": "https://example.com/dna-video",
+      "audience": "both"
+    }
+  ],
+  "audience": "both"
+}

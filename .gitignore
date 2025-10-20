@@ -1,3 +1,44 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*.local
+.env
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
 # BMAD (local only)
 .bmad-core/
 .bmad-*/
+bmad/
+
+# AI Tool Configurations (local only)
+.claude/
+.cursor/
+.gemini/
+.serena/
+AGENTS.md
+CLAUDE.md
+opencode.jsonc

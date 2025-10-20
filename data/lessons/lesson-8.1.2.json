@@ -1,0 +1,81 @@
+{
+  "id": "8.1.2",
+  "title": "Chemical Reactions and Energy Transfer",
+  "disciplineId": "physical-science",
+  "disciplineSlug": "physical-science",
+  "unitId": "8.1",
+  "unitTitle": "Chemical Reactions and Matter",
+  "duration": "45 minutes",
+  "standards": ["MS-PS1-2", "MS-PS3-1"],
+  "objectives": [
+    "Analyze evidence that chemical reactions involve energy transfer",
+    "Construct explanations using molecular models",
+    "Develop claims supported by evidence from investigations"
+  ],
+  "materials": [
+    { "quantity": "Per Group", "description": "250mL beaker", "audience": "both" },
+    { "quantity": "Per Group", "description": "Thermometer (-10°C to 110°C)", "audience": "both" },
+    { "quantity": "Per Student", "description": "Safety goggles", "audience": "both" },
+    { "quantity": "Per Group", "description": "Baking soda and vinegar", "audience": "both" },
+    { "quantity": "Per Group", "description": "Hand warmer packet", "audience": "both" }
+  ],
+  "sequence": [
+    {
+      "phase": "Engage",
+      "duration": 10,
+      "description": "Hook activity: Observe hand warmer chemical reaction",
+      "audience": "both"
+    },
+    {
+      "phase": "Explore",
+      "duration": 15,
+      "description": "Investigation: Measure temperature changes in reactions",
+      "audience": "both"
+    },
+    {
+      "phase": "Explain",
+      "duration": 10,
+      "description": "Class discussion: Energy transfer in reactions",
+      "audience": "both"
+    },
+    {
+      "phase": "Elaborate",
+      "duration": 5,
+      "description": "Apply learning to real-world examples",
+      "audience": "both"
+    },
+    {
+      "phase": "Evaluate",
+      "duration": 5,
+      "description": "Assessment: Exit ticket on energy transfer",
+      "audience": "teacher"
+    }
+  ],
+  "teachingGuidance": {
+    "misconceptions": [
+      "Students may think energy is used up in reactions",
+      "Students may confuse temperature with heat"
+    ],
+    "keyQuestions": [
+      "Where does the energy come from in this reaction?",
+      "How do we know energy was transferred?"
+    ],
+    "differentiationNotes": "Provide molecular model manipulatives for visual learners",
+    "audience": "teacher"
+  },
+  "resources": [
+    {
+      "type": "PDF",
+      "title": "Teacher Guide",
+      "url": "/resources/8.1.2-teacher-guide.pdf",
+      "audience": "teacher"
+    },
+    {
+      "type": "PPT",
+      "title": "Lesson Slides",
+      "url": "/resources/8.1.2-slides.pptx",
+      "audience": "both"
+    }
+  ],
+  "audience": "both"
+}
